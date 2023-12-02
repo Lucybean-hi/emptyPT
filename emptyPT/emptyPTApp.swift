@@ -13,6 +13,7 @@ struct emptyPTApp: App {
         WindowGroup {
            ContentView()
 //          TextView()
+//          jsView()
         }
     }
 }
