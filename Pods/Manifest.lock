@@ -1,0 +1,16 @@
+PODS:
+  - PerspectiveTransform (1.0)
+
+DEPENDENCIES:
+  - PerspectiveTransform
+
+SPEC REPOS:
+  trunk:
+    - PerspectiveTransform
+
+SPEC CHECKSUMS:
+  PerspectiveTransform: 61d602b783de8f9defec4c3392134fcf750ef3e5
+
+PODFILE CHECKSUM: 666e57d3b16c1147c44221847ff3285bdfd78799
+
+COCOAPODS: 1.14.3
