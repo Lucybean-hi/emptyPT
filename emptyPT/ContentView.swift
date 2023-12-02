@@ -1,17 +1,12 @@
 import SwiftUI
-import PerspectiveTransform
+//import PerspectiveTransform
 import UIKit
 import Foundation
 import QuartzCore
 import CoreGraphics
+import CoreImage
 
 struct ContentView: View {
-//    @State private var cornerPoints = [
-//        CGPoint(x: 0, y: 0),    // Top left
-//        CGPoint(x: 400, y: 0),    // Top right
-//        CGPoint(x: 0, y: 400),    // Bottom left
-//        CGPoint(x: 400, y: 400)     // Bottom right
-//    ]
     @State private var topLeft = CGPoint(x: 0, y: 0) // 子视图/正方形 的左上角
     @State private var topRight = CGPoint(x: 400, y: 0)
     @State private var bottomLeft = CGPoint(x: 0, y: 400)
@@ -79,30 +74,54 @@ struct OverlayImageView: View {
     @Binding var topRight: CGPoint
     @Binding var bottomLeft: CGPoint
     @Binding var bottomRight: CGPoint
-    var body: some View {
-        let startPerspective = Perspective(CGRect(x: 0, y: 0, width: 400, height: 400))
-        let endPerspective = Perspective(topLeft, topRight, bottomLeft, bottomRight)
-
-        return Image("overlayImage")
-            .resizable()
-            .modifier(PerspectiveModifier(startPerspective: startPerspective, endPerspective: endPerspective))
+  var body: some View {
+    return Image(uiImage: perspectiveTransformedImage())
+      .resizable()
+    //        let startPerspective = Perspective(CGRect(x: 0, y: 0, width: 400, height: 400))
+    //        let endPerspective = Perspective(topLeft, topRight, bottomLeft, bottomRight)
+    //
+    //        return Image("overlayImage")
+    //            .resizable()
+    //            .modifier(PerspectiveModifier(startPerspective: startPerspective, endPerspective: endPerspective))
+    func perspectiveTransformedImage() -> UIImage {
+      let perspectiveTransform = CIFilter(name: "CIPerspectiveTransform")!
+      //颠倒
+      perspectiveTransform.setValue(CIVector(cgPoint: bottomLeft), forKey: "inputTopLeft")
+      perspectiveTransform.setValue(CIVector(cgPoint: bottomRight), forKey: "inputTopRight")
+      perspectiveTransform.setValue(CIVector(cgPoint: topLeft), forKey: "inputBottomLeft")
+      perspectiveTransform.setValue(CIVector(cgPoint: topRight), forKey: "inputBottomRight")
+      
+//      perspectiveTransform.setValue(CIVector(cgPoint: topLeft), forKey: "inputTopLeft")
+//      perspectiveTransform.setValue(CIVector(cgPoint: topRight), forKey: "inputTopRight")
+//      perspectiveTransform.setValue(CIVector(cgPoint: bottomLeft), forKey: "inputBottomLeft")
+//      perspectiveTransform.setValue(CIVector(cgPoint: bottomRight), forKey: "inputBottomRight")
+      perspectiveTransform.setValue(CIImage(image: UIImage(named: "overlayImage")!)!, forKey: kCIInputImageKey)
+      
+      let ciContext = CIContext()
+      guard let outputCIImage = perspectiveTransform.outputImage,
+            let cgImage = ciContext.createCGImage(outputCIImage, from: outputCIImage.extent) else {
+        return UIImage()
+      }
+      
+      return UIImage(cgImage: cgImage)
     }
+  }
 }
 
-struct PerspectiveModifier: GeometryEffect {
-    var startPerspective: Perspective
-    var endPerspective: Perspective
-
-    func effectValue(size: CGSize) -> ProjectionTransform {
-        let transform3D = startPerspective.projectiveTransform(destination: endPerspective)
-
-        let affineTransform = CGAffineTransform(
-            a: CGFloat(transform3D.m11), b: CGFloat(transform3D.m12),
-            c: CGFloat(transform3D.m21), d: CGFloat(transform3D.m22),
-            tx: CGFloat(transform3D.m41), ty: CGFloat(transform3D.m42)
-        )
-        return ProjectionTransform(affineTransform)
-    }
-}
+//struct PerspectiveModifier: GeometryEffect {
+//    var startPerspective: Perspective
+//    var endPerspective: Perspective
+//
+//    func effectValue(size: CGSize) -> ProjectionTransform {
+//        let transform3D = startPerspective.projectiveTransform(destination: endPerspective)
+//
+//        let affineTransform = CGAffineTransform(
+//            a: CGFloat(transform3D.m11), b: CGFloat(transform3D.m12),
+//            c: CGFloat(transform3D.m21), d: CGFloat(transform3D.m22),
+//            tx: CGFloat(transform3D.m41), ty: CGFloat(transform3D.m42)
+//        )
+//        return ProjectionTransform(affineTransform)
+//    }
+//}
 
 

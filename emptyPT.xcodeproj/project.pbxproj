@@ -11,6 +11,7 @@
 		8D90E7372B17F19400F08D52 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90E7362B17F19400F08D52 /* ContentView.swift */; };
 		8D90E7392B17F19600F08D52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D90E7382B17F19600F08D52 /* Assets.xcassets */; };
 		8D90E73C2B17F19600F08D52 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D90E73B2B17F19600F08D52 /* Preview Assets.xcassets */; };
+		8D90E7492B1B826F00F08D52 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90E7482B1B826F00F08D52 /* TextView.swift */; };
 		9BDECD7CFA7E18CAC34062C7 /* Pods_emptyPT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46BBD4F4447D89C6BB6B0B43 /* Pods_emptyPT.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 		8D90E7382B17F19600F08D52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D90E73B2B17F19600F08D52 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D90E7442B1B1EBA00F08D52 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8D90E7452B1B760600F08D52 /* pureQuardCalc.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = pureQuardCalc.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		8D90E7482B1B826F00F08D52 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		BA522854D45A110711A9AAC3 /* Pods-emptyPT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-emptyPT.release.xcconfig"; path = "Target Support Files/Pods-emptyPT/Pods-emptyPT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,6 +53,7 @@
 		8D90E7282B17F19400F08D52 = {
 			isa = PBXGroup;
 			children = (
+				8D90E7452B1B760600F08D52 /* pureQuardCalc.playground */,
 				8D90E7442B1B1EBA00F08D52 /* MyPlayground.playground */,
 				8D90E7332B17F19400F08D52 /* emptyPT */,
 				8D90E7322B17F19400F08D52 /* Products */,
@@ -73,6 +77,7 @@
 				8D90E7362B17F19400F08D52 /* ContentView.swift */,
 				8D90E7382B17F19600F08D52 /* Assets.xcassets */,
 				8D90E73A2B17F19600F08D52 /* Preview Content */,
+				8D90E7482B1B826F00F08D52 /* TextView.swift */,
 			);
 			path = emptyPT;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D90E7492B1B826F00F08D52 /* TextView.swift in Sources */,
 				8D90E7372B17F19400F08D52 /* ContentView.swift in Sources */,
 				8D90E7352B17F19400F08D52 /* emptyPTApp.swift in Sources */,
 			);
